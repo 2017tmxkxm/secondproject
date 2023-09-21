@@ -2,6 +2,10 @@ package org.example.springbootdeveloper.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -25,8 +29,19 @@ public class Article {
         this.content = content;
     }
 
+    // 엔티티가 생성될 때 생성 시간 저장
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    // 엔티티가 수정될 때 수정 시간 저장
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
     }
+
 }

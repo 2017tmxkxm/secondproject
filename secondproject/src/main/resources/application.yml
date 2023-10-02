@@ -11,6 +11,17 @@ spring:
   h2:
     console:
       enabled: true
+  # OAuth
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 257427...
+            client-secret: GOCSP...
+            scope:
+              - email
+              - profile
 
 jwt:
   # 이슈 발급자

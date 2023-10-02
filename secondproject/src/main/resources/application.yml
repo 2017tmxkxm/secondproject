@@ -17,3 +17,11 @@ jwt:
   issuer: ajufresh@gmail.com
   # 비밀키
   secret_key: study-springboot
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL:
+          DEBUG
+

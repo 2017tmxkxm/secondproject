@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
-public class TokenAuthenricationFilter extends OncePerRequestFilter {
+public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     private final TokenProvider tokenProvider;
     private final static String HEADER_AUTHORIZATION = "Authorization";
@@ -26,11 +26,8 @@ public class TokenAuthenricationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 요청 헤더의 Authorization 키의 값 조회
         String authorizationHeader = request.getHeader(HEADER_AUTHORIZATION);
-        log.info("auth : {}", authorizationHeader);
         // 가져온 값에서 접두사 제거
         String token = getAccessToken(authorizationHeader);
-        log.info("token : {}", token);
-        log.debug("ddddd");
         // 가져온 토큰이 유효한지 확인하고, 유효한 때는 인증 정보 설정
         if(tokenProvider.validToken(token)) {
             Authentication authentication = tokenProvider.getAuthentication(token);

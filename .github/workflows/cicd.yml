@@ -16,8 +16,8 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+      - name: Run chmod to make gradlew executable
+        run: chmod +x ./gradlew
 
       - name: Build with Gradle
         run: ./gradlew clean build
